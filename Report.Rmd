@@ -1,0 +1,51 @@
+---
+title: "Report"
+author: "JoJoPistol"
+date: "2/22/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+save(Zoo, file="Zoo.rda")
+## R Markdown
+# Zoo animal example
+
+This is an really short report. There are six taxa with 1 to 175 species.
+
+```{r taxa sum}
+table(Zoo$TaxonClass)
+```
+
+Drop arachnida because there is only 1 species 
+
+```{r drop arachnida}
+zoo1 <- subset(Zoo,TaxonClass!= "Arachnida")
+```
+
+# Boxplots of MLE by taxon
+```{r boxplot1}
+boxplot(zoo1$Overall.MLE~zoo1$TaxonClass)
+```
+
+
+# Boxplot by gender
+```{r boxplotby sex}
+split.screen(c(1,2))
+screen(1)
+boxplot(zoo1$Male.MLE~zoo1$TaxonClass, main="Males")
+screen(2)
+boxplot(zoo1$Female.MLE~zoo1$TaxonClass, main="Females")
+```
+
+# Compare males and females by taxon
+There are no sex differences in life expectancy in any taxon
+```{r sex differences}
+t.test(zoo1[zoo1$TaxonClass=="Aves", "Male.MLE"],zoo1[zoo1$TaxonClass=="Aves", "Female.MLE"] )
+t.test(zoo1[zoo1$TaxonClass=="Mammalia", "Male.MLE"],zoo1[zoo1$TaxonClass=="Mammalia", "Female.MLE"] )
+t.test(zoo1[zoo1$TaxonClass=="Amphibia", "Male.MLE"],zoo1[zoo1$TaxonClass=="Amphibia", "Female.MLE"] )
+t.test(zoo1[zoo1$TaxonClass=="Reptilia", "Male.MLE"],zoo1[zoo1$TaxonClass=="Reptilia", "Female.MLE"] )
+
+```
+
