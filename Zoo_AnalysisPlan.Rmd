@@ -1,0 +1,21 @@
+---
+title: "AnalysisPlan"
+author: "JoJoPistol"
+date: "2/22/2020"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Zoo Analysis Plan
+Determine how many species
+Determine how many taxa
+Determine how many species available per taxa
+For taxa with sufficient numbers, assess differences among taxa
+Look at sex differences by taxa
+
+
